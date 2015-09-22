@@ -1,0 +1,16 @@
+# pycharm
+.idea/
+
+# bytecompiled files
+*.pyc
+
+
+# virtualenv
+venv/
+
+# temporary files
+*.~
+
+# swap files
+*.swp
+*.swo
