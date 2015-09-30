@@ -1,0 +1,25 @@
+
+{% load staticfiles %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <p>
+                Welcome to Tweeting Newsfeeds,
+                select the country to see the news
+            </p>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <form method="post">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="submit" />
+            </form>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+{% endblock %}

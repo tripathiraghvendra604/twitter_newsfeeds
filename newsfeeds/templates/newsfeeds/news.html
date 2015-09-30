@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+    {% for article in object_list %}
+        <a href="/news/{{ article.country }}/{{ article.id }}" >
+            <b>
+                {{ article.tag }}
+            </b>
+            <br />
+            <p>
+                {{ article.heading }}
+            </p>
+            {% if article.image_url != '' %}
+                <img src="{{ article.image_url }}" height="10%" width="15%" />
+            {% endif %}
+            <hr />
+        </a>
+    {% endfor %}
+    </div>
+{% endblock content %}

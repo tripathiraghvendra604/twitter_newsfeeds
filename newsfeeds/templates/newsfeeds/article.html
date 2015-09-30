@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <div style="background-image: url('{% static "images/world-map.png" %}');">
+    <h2 class="text-center">
+        {{ article.heading }}
+    </h2>
+
+    <img src="{{ article.image_url }}" alt="Loading image..." class="img-responsive" style="margin: 0 auto;"/>
+    <p>
+        {{ article.body }}
+        <div class="row">
+            <div class="col-sm-2">
+                <a href="/news/{{ article.country.name }}">
+                    back
+                </a>
+            </div>
+            <div class="col-sm-8">
+            </div>
+            <div class="col-sm-2">
+                <a href="{{ article.link }}" target="_blank" >Click to see full news...</a>
+            </div>
+        </div>
+    </p>
+    </div>
+{% endblock content %}

@@ -1,0 +1,61 @@
+import twitter
+import json
+import urllib.request, urllib.parse, urllib.error
+from urllib.request import urlopen
+
+
+def gettags():
+    CONSUMER_KEY = 'NNWRNbrJAAovWOkvlNuPh6WOL'
+    CONSUMER_SECRET = 'rTtPwwRNP2Pfs84jycp2It0SsVzGa9oRcmqtYmoJDGCUbdE8Ml'
+    OAUTH_TOKEN = '2638839127-niBkABwiXSo4HwNJPc0n0eMVp7AB4cJPIwh3nfN'
+    OAUTH_TOKEN_SECRET = 'PSfT6Pgx3smsRVjRIEkVbnDkH6ngkgQX6iv4luuMRM4nc'
+
+    auth = twitter.oauth.OAuth(OAUTH_TOKEN, OAUTH_TOKEN_SECRET,
+                               CONSUMER_KEY, CONSUMER_SECRET)
+
+    twitter_api = twitter.Twitter(auth=auth)
+
+    print(twitter_api)
+
+    WORLD_WOE_ID = 1
+    IN_WOE_ID = 23424848
+
+
+    #world_trends = twitter_api.trends.place(_id=WORLD_WOE_ID)
+    india_trends = twitter_api.trends.place(_id=IN_WOE_ID)
+
+    #print world_trends
+    #print
+    #print india_trends
+
+    import json
+
+    #print json.dumps(world_trends, indent=1)
+    #print
+    #print json.dumps(india_trends, indent=1)
+
+    for trend in india_trends:
+        for key in trend["trends"]:
+            print((key["name"]))
+            showsome(key['name'])
+
+
+
+def showsome(searchfor):
+  query = urllib.parse.urlencode({'q': searchfor})
+  url = 'http://ajax.googleapis.com/ajax/services/search/news?v=1.0&%s' % query
+  search_response = urllib.request.urlopen(url)
+  search_results = search_response.read().decode('utf8')
+  results = json.loads(search_results)
+  #print(results)
+  data = results['responseData']
+  #print('Total results: %s' % data['cursor']['estimatedResultCount'])
+  hits = data['results']
+  #print('Top %d hits:' % len(hits))
+  for h in hits:
+      print(' ', h['url'])
+  #print('For more results, see %s' % data['cursor']['moreResultsUrl'])
+
+
+if __name__ == '__main__':
+    gettags()
